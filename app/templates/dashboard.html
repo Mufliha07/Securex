@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dashboard</title>
+<style>
+body{
+    margin:0;
+    height:100vh;
+    background:linear-gradient(135deg,#0f172a,#020617);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:Segoe UI,Arial;
+    color:white;
+}
+.card{
+    text-align:center;
+    background:#020617;
+    padding:50px;
+    border-radius:20px;
+    box-shadow:0 30px 70px rgba(0,0,0,.7);
+}
+h1{
+    font-size:36px;
+    margin-bottom:15px;
+}
+p{opacity:.8;margin-bottom:30px}
+button{
+    padding:12px 28px;
+    margin:10px;
+    border:none;
+    border-radius:8px;
+    font-size:15px;
+    cursor:pointer;
+}
+.enable{background:#22c55e;color:white}
+.logout{background:#ef4444;color:white}
+</style>
+</head>
+
+<body>
+<div class="card">
+<h1>Welcome, {{ username }}</h1>
+<p>Secure access enabled</p>
+
+{% if show_2fa %}
+<form method="post" action="/enable-2fa">
+<input type="hidden" name="username" value="{{ username }}">
+<button class="enable">Enable 2FA</button>
+</form>
+{% endif %}
+
+<form method="get" action="/">
+<button class="logout">Logout</button>
+</form>
+</div>
+</body>
+</html>
